@@ -50,14 +50,4 @@ backadd 路径 [x,u] 文件or路径
 将 文件添加到 路径中,该路径为相对bypy相对路径
 
 backlist
-
-查询bypy 中的文件路径 (子级目录带更新)
-
-backupload 
-
-更新到到云服务器
-
-backdownload 
-
-下载到本地
  
