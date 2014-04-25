@@ -1,0 +1,76 @@
+#!/bin/bash
+
+#heysions@gmail.com
+
+DEF_BYPY_PATH=$HOME/bin/bypy
+DEF_BACKUP_PATH=$DEF_BYPY_PATH/backup
+
+if [ $1x == "-p"x ];then
+
+    list_file=($@)
+    for (( i = 1 ; i < ${#list_file[@]} ; i++ ))
+    do
+	cp -rf ${list_file[$i]} $DEF_BACKUP_PATH/
+	printf "cp -rf [ %s ]files to backup\n" ${list_file[$i]}
+    done
+    exit 0;
+
+fi
+if [ $# -eq 1 ];then
+    echo $DEF_BACKUP_PATH
+    if [ ! -d "$DEF_BACKUP_PATH" ]; then
+	mkdir $DEF_BACKUP_PATH
+    fi
+    cp -rf $1 $DEF_BACKUP_PATH/
+
+    printf "cp -rf [ %s ]file backup\n" $1
+    exit 0;
+fi
+
+if [ $# -eq 2 ]; 
+then
+    if [ $1x == "-x"x ];then
+	mv -f $2 $DEF_BACKUP_PATH/
+	printf "mv -f [ %s ]files to backup\n" $2
+	exit 0;
+    fi
+
+    if [ $1x == "-u"x ];then
+	cp -rf $2 $DEF_BACKUP_PATH/
+	printf "cp -rf [ %s ]files to backup\n" $2
+	exit 0;
+    fi
+
+    if [  -d "$DEF_BYPY_PATH/$1" ]; then
+	cp -rf $2 $DEF_BYPY_PATH/$1
+	printf "cp -rf [ %s ]files to %s\n" $2 $1
+	exit 0;
+    fi
+    echo "not found command or opt error"
+    exit 1;
+fi
+
+if [ $# -eq 3 ]; 
+then
+
+    if [ ! -d "$DEF_BYPY_PATH/$1" ]; then
+	mkdir $DEF_BYPY_PATH/$1
+    fi
+
+    if [ $2x == "-x"x ];then
+	mv -f $3 $DEF_BYPY_PATH/$1/
+	printf "mv -f [ %s ]files to %d\n" $3 $DEF_BYPY_PATH/$1
+	exit 0;
+    fi
+
+    if [ $2x == "-u"x ];then
+	cp -rf $3 $DEF_BYPY_PATH/$1
+	printf "cp -rf [ %s ]files to %d\n" $3 $DEF_BYPY_PATH/$1
+	exit 0;
+    fi
+    echo "not found command or opt error"
+    exit 1;
+fi
+
+echo "not found command or opt error"
+
