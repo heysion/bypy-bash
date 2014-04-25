@@ -39,15 +39,26 @@ backadd 文件or路径
 
 将文件or路径添加到 bypy backup默认备份目录中
 
-backadd [x,u] 文件or路径
+backadd [-x,-u,-p] 文件or路径
 
-x表示 采用mv方式 添加到bypy backup中
+-x表示 采用mv方式 添加到bypy backup中
 
-u表示 采用cp方式
+-u表示 采用cp方式
 
-backadd 路径 [x,u] 文件or路径
+-p表示 批量添加 文件or路径到backup目录
+
+
+backadd -x xxx
+
+backadd -u xxx
+
+backadd -p xx*
+
+
+backadd 路径 [-x,-u] 文件or路径
 
 将 文件添加到 路径中,该路径为相对bypy相对路径
+
 
 backlist
 
@@ -60,4 +71,6 @@ backupload
 backdownload 
 
 下载到本地
+
+
  
